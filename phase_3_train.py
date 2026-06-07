@@ -28,13 +28,21 @@ def train_and_evaluate():
     df = df.sort_values('date').reset_index(drop=True)
     
     # 3. Explicitly define our analytical feature features from your 13-column schema
+    # feature_cols = [
+    #     'temperature', 
+    #     'humidity', 
+    #     'stadium_avg_runs', 
+    #     'team1_roster_index', 
+    #     'team2_roster_index', 
+    #     'index_differential'
+    # ]
+
+    # 2. Map features explicitly from your 13-column schema
     feature_cols = [
         'temperature', 
         'humidity', 
         'stadium_avg_runs', 
-        'team1_roster_index', 
-        'team2_roster_index', 
-        'index_differential'
+        'index_differential'  # Removed individual team indices to kill multicollinearity!
     ]
     
     print(f" Extracting {len(feature_cols)} features for training: {feature_cols}")
