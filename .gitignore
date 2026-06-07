@@ -1,0 +1,11 @@
+# Local python environment footprints
+__pycache__/
+*.pyc
+
+# Data Management: Ignore raw and processed data tables
+data/raw/
+data/processed/
+
+# Ignore local configuration environment parameters
+.DS_Store
+.vscode/
