@@ -38,11 +38,22 @@ def train_and_evaluate():
     # ]
 
     # 2. Map features explicitly from your 13-column schema
+    # feature_cols = [
+    #     'temperature', 
+    #     'humidity', 
+    #     'stadium_avg_runs', 
+    #     'index_differential'  # Removed individual team indices to kill multicollinearity!
+    # ]
+
+    ##refined feature_cols accounting for venue factors
+    # Update this block inside phase_3_train.py
     feature_cols = [
         'temperature', 
         'humidity', 
         'stadium_avg_runs', 
-        'index_differential'  # Removed individual team indices to kill multicollinearity!
+        'stadium_volatility',        # New vector feature
+        'stadium_boundary_density',   # New vector feature
+        'index_differential' #solves multicollinearity
     ]
     
     print(f" Extracting {len(feature_cols)} features for training: {feature_cols}")
