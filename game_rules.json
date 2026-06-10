@@ -1,0 +1,9 @@
+{
+    "format_name": "IPL_T20",
+    "total_overs": 20,
+    "balls_per_over": 6,
+    "max_overs_per_bowler": 4,
+    "powerplay_overs": 6,
+    "max_wickets": 10,
+    "base_historical_death_acceleration": 1.25 
+}
