@@ -132,6 +132,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
+import joblib
 from sklearn.metrics import (
     mean_squared_error, 
     mean_absolute_error, 
@@ -230,6 +231,22 @@ def train_and_evaluate():
     for feat, coef in zip(feature_cols, clf_model.coef_[0]):
         odds_ratio = np.exp(coef)
         print(f"   -> {feat}: Coef = {coef:+.4f} | Odds Ratio = {odds_ratio:.4f}")
+
+    # =========================================================================
+    # SAVE MODELS TO DISK
+    # =========================================================================
+    MODELS_DIR = "models"
+    os.makedirs(MODELS_DIR, exist_ok=True)
+
+    joblib.dump(reg_model, os.path.join(MODELS_DIR, "xgb_score_model.pkl"))
+    joblib.dump(clf_model, os.path.join(MODELS_DIR, "logistic_win_model.pkl"))
+    joblib.dump(scaler, os.path.join(MODELS_DIR, "feature_scaler.pkl"))
+
+    # Save venue profiles for the dashboard dropdown
+    venue_df = df[['venue', 'stadium_avg_runs', 'stadium_volatility', 'stadium_boundary_density']].drop_duplicates()
+    venue_df.to_csv(os.path.join("data", "processed", "venue_profiles.csv"), index=False)
+
+    print(f"\n✅ Models saved to {MODELS_DIR}/")
 
 if __name__ == "__main__":
     train_and_evaluate()
